@@ -61,8 +61,8 @@ const onSubmitEmployee = () => {
 
 
         return (
-  <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-3 center">
-        <main className="pa4 black-80">
+  <article className="br3 white ba b--black-10 w-30 mv3 shadow-3 center">
+        <main className="pa4 white-90">
           <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
         <legend className="f1 fw6 ph0 mh0">Add Employee</legend>
@@ -80,7 +80,7 @@ const onSubmitEmployee = () => {
         </div>
         <div className="mt3">
           <label className="db fw6 lh-copy f6" htmlFor="date-of-birth">Date of Birth</label>
-          <input onChange={onDOBChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="date" name="date-of-birth"  id="date-of-birth" />
+          <input onChange={onDOBChange} className="pa2 white input-reset ba bg-transparent hover-bg-black hover-white w-100" type="date" name="date-of-birth"  id="date-of-birth" />
         </div>
         <div className="mt3">
           <label className="db fw6 lh-copy f6" htmlFor="job-title">Job Title</label>
@@ -88,8 +88,8 @@ const onSubmitEmployee = () => {
         </div>
        
       </fieldset>
-      <div className="">
-        <input onClick={onSubmitEmployee} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Add Employee" />
+      <div className="white-90">
+        <input onClick={onSubmitEmployee} className="b mt3 ph3 pv2 input-reset ba b--white white-90 bg-transparent grow pointer f6 dib" type="submit" value="Add Employee" />
       </div>
     </div>
   </main>

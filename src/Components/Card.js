@@ -1,13 +1,23 @@
 import React from 'react';
-const Card = ({name,email,id,job_title}) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
+
+const Card = ({name,email,id,job_title,DOB,onRouteChange,cardInfo}) => {
+
 	return (
-      <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
-      <img src={`https://robohash.org/${id}?100x100`} alt="user robot" />
+      <div className="tc system-sans-serif bg-lightest-blue dib br2 pa3 ma2 grow bw2 shadow-5 w5">
+            <FontAwesomeIcon 
+            className="shadow-1 pa1 br2 grow pointer" 
+            onClick={() => {onRouteChange('editForm')
+            cardInfo(name,email,id,job_title,DOB)
+      }
+      } 
+            icon={faUserEdit} />
+      <img  className="ba bw1 b--navy br-100"src={`https://robohash.org/${id}?size=150x150`} alt="user robot" />
       <div>
-            <h4>{`id: ${id}`}</h4>
-      <h2>{name}</h2>
-      <p>{email}</p>
-      <p>{job_title}</p>
+            <p className="gray">{`#${id}`}</p>
+      <h2 className="ttc mb0">{name}</h2>
+      <p className="ttc mt2 gray">{job_title}</p>
       </div>
       </div>
 		);

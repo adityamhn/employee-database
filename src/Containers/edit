@@ -1,0 +1,21 @@
+<div>
+			<Particles className="particles" params={particlesOptions}/>
+			<Navigation onRouteChange={onRouteChange} route={route} />
+            {route === 'home' ? (robots.length === 0 ?
+		<div>
+        <h1 className="tc">LOADING!!</h1></div> :
+		<div className="tc">
+		<h1 className="f1">EMPLOYEES</h1>
+		<SearchBox onSearchChange={onSearchChange}/>
+		<Scroll>
+		<ErrorBoundry>
+        <CardList robots={filteredRobots} onRouteChange={onRouteChange} />
+        </ErrorBoundry>
+          </Scroll>
+			
+     </div>
+			 ) : <div>
+				 <AddEmployeeForm  onRouteChange={onRouteChange}/>
+				 </div> }
+			
+	 </div>
