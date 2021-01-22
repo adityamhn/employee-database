@@ -20,6 +20,7 @@ const [id,setId] = useState();
 const [email,setEmail] = useState('');
 const [job_title,setJob_title] = useState('');
 const [date_of_birth,setDate_of_birth] = useState('')
+const [department,setDepartment] = useState('')
 
 const onNameChange = (event) => {
   setName(event.target.value)
@@ -41,6 +42,10 @@ const onDOBChange = (event) => {
   setDate_of_birth(event.target.value)
 }
 
+const onDepartmentChange = (event) => {
+  setDepartment(event.target.value)
+}
+
 const onSubmitEmployee = () => {
   fetch('http://localhost:3000/addemployee',{
     method:'put',
@@ -50,7 +55,8 @@ const onSubmitEmployee = () => {
       id: id,
       name:name,
       job_title:job_title,
-      date_of_birth:date_of_birth
+      date_of_birth:date_of_birth,
+      department:department      
     })
   })
   .then(response => response.json())
@@ -85,6 +91,20 @@ const onSubmitEmployee = () => {
         <div className="mt3">
           <label className="db fw6 lh-copy f6" htmlFor="job-title">Job Title</label>
           <input onChange={onJobTitleChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="job-title"  id="job-title" />
+        </div>
+        <div className="mt3">
+          <label className="db fw6 lh-copy f6" htmlFor="department">Department</label>
+          <select onChange={onDepartmentChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" id="department" name="department">
+          <option value="none" selected disabled hidden>Select your department</option>
+            <option value="human resource">Human Resource</option>
+            <option value="accounting">Accounting</option>
+            <option value="management">Management</option>
+            <option value="financial">Financial</option>
+            <option value="billing">Billing</option>
+            <option value="construction">Construction</option>
+            <option value="information technology">Information Technology</option>
+            <option value="insurance">Insurance</option>
+          </select>
         </div>
        
       </fieldset>

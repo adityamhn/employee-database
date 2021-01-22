@@ -149,7 +149,8 @@ function App () {
 	// }
 	const [route,setRoute] = useState("home")
 	const [robots,setRobots] = useState([])
-	const [searchfield,setSearchfield] = useState("")
+  const [searchfield,setSearchfield] = useState("")
+  const [filter,setFilter] = useState("all")
 	const [user,setUser] = useState([])
 
 	// componentDidMount() {
@@ -168,12 +169,17 @@ function App () {
 	useEffect(() => {
 		fetch('http://localhost:3000/')
 		.then(response => response.json())
-		.then(users => {setRobots(users)})
+    .then(users => {setRobots(users);
+    console.log(users);})
 	},[])
     
 const onSearchChange = (event) => {
     	setSearchfield(event.target.value)
-		}
+    }
+  
+const onFilterChange = (event) => {
+  setFilter(event.target.value)
+}
 
 const onRouteChange = (view) => {
 	if (view === 'home') {
@@ -186,13 +192,17 @@ const onRouteChange = (view) => {
 	
 }
 
-const cardInfo = (name,email,id,job_title,date_of_birth) => {
-	setUser([name,email,id,job_title,date_of_birth])
+const cardInfo = (name,email,id,job_title,date_of_birth,department) => {
+	setUser([name,email,id,job_title,date_of_birth,department])
 }
 
 
 const filteredRobots = robots.filter(robot => {
-    		return (robot.name.toLowerCase().includes(searchfield.toLowerCase()) || robot.email.toLowerCase().includes(searchfield.toLowerCase()) || robot.id.toString().includes(searchfield));
+  if (filter === 'all') {
+        return (robot.name.toLowerCase().includes(searchfield.toLowerCase()) || robot.email.toLowerCase().includes(searchfield.toLowerCase()) || robot.id.toString().includes(searchfield));
+  } else {
+    return ((robot.department.toLowerCase().includes(filter.toLowerCase())) && (robot.name.toLowerCase().includes(searchfield.toLowerCase()) || robot.email.toLowerCase().includes(searchfield.toLowerCase()) || robot.id.toString().includes(searchfield)))
+  }
 		});
 		
 		return  (
@@ -204,7 +214,7 @@ const filteredRobots = robots.filter(robot => {
         <h1 className="tc">LOADING!!</h1></div> :
 		<div className="tc">
 		<h1 className="f1">EMPLOYEES</h1>
-		<SearchBox onSearchChange={onSearchChange}/>
+		<SearchBox onFilterChange={onFilterChange} onSearchChange={onSearchChange}/>
 		<Scroll>
 		<ErrorBoundry>
         <CardList cardInfo={cardInfo} robots={filteredRobots} onRouteChange={onRouteChange} />

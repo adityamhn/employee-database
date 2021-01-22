@@ -13,6 +13,7 @@ const CardComponent = robots.map((user,i) => {
 		email={robots[i].email}
 		DOB={robots[i].date_of_birth}
 		job_title={robots[i].job_title}
+		department={robots[i].department}
 		onRouteChange={onRouteChange}
 		/>
 		);
